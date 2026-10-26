@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+<meta charset="UTF-8">
+    
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+<title>Kadiogo Region</title>
+    
+<style>
+        
+body {
+            
+font-family: Arial, sans-serif;
+            
+background: #eef3ee;
+            
+padding: 16px;
+        
+}
+        
+h1 {
+            
+color: #1f6b57;
+        
+}
+        
+select,
+        
+button {
+            
+width: 100%;
+            
+padding: 14px;
+            
+font-size: 18px;
+            
+margin-top: 8px;
+            
+border-radius: 10px;
+        
+}
+        
+button {
+            
+background: #1f6b57;
+            
+color: white;
+            
+border: none;
+        
+}
+        
+.cards {
+            
+display: grid;
+            
+grid-template-columns: 1fr 1fr;
+            
+gap: 10px;
+        
+}
+        
+.card {
+            
+background: white;
+            
+padding: 14px;
+            
+border-radius: 10px;
+        
+}
+        
+.card span {
+            
+display: block;
+            
+color: #5d6a62;
+            
+font-size: 14px;
+        
+}
+        
+.card b {
+            
+font-size: 32px;
+        
+}
+    
+</style>
+</head>
+<body>
+    
+<h1>Kadiogo Region</h1>
+    
+<label for="site">Sampling site:</label>
+    
+<select id="site">
+        
+<option value="KATAB_01">KATAB_01 - Pabré</option>
+        
+<option value="GAMP_01">GAMP_01 - Saaba</option>
+        
+<option value="PAMNO_01">PAMNO_01 - Komsilga</option>
+        
+<option value="KOCB_01">KOCB_01 - Koubri</option>
+    
+</select>
+    
+<button id="measure">Take a measurement</button>
+    
+<p id="site-name">No measurement yet</p>
+    
+<div class="cards">
+        
+<div class="card"><span>Moisture</span><b id="hum">–</b> %</div>
+        
+<div class="card"><span>Temperature</span><b id="temp">–</b> °C</div>
+        
+<div class="card"><span>pH</span><b id="ph">–</b></div>
+        
+<div class="card"><span>Conductivity EC</span><b id="ec">–</b> µS/cm</div>
+        
+<div class="card"><span>Nitrogen N</span><b id="n">–</b> mg/kg</div>
+        
+<div class="card"><span>Phosphorus P</span><b id="p">–</b> mg/kg</div>
+        
+<div class="card"><span>Potassium K</span><b id="k">–</b> mg/kg</div>
+    
+</div>
+    
+<script>
+        
+const button = document.getElementById("measure");
+        
+button.addEventListener("click", function () {
+            
+const site = document.getElementById("site").value;
+            
+const hum = (15 + Math.random() * 15).toFixed(1);
+            
+const temp = (28 + Math.random() * 6).toFixed(1);
+            
+const ph = (5.5 + Math.random() * 2).toFixed(1);
+            
+const ec = (100 + Math.random() * 300).toFixed(0);
+            
+const n = (5 + Math.random() * 20).toFixed(0);
+            
+const p = (3 + Math.random() * 12).toFixed(0);
+            
+const k = (60 + Math.random() * 100).toFixed(0);
+            
+const line = "hum=" + hum + ";temp=" + temp + ";ph=" + ph +
+                
+";ec=" + ec + ";n=" + n + ";p=" + p + ";k=" + k;
+            
+const parts = line.split(";");
+            
+const values = {};
+            
+parts.forEach(function (part) {
+                
+const pair = part.split("=");
+                
+values[pair[0]] = pair[1];
+            
+});
+            
+document.getElementById("site-name").textContent = site;
+            
+document.getElementById("hum").textContent = values.hum;
+            
+document.getElementById("temp").textContent = values.temp;
+            
+document.getElementById("ph").textContent = values.ph;
+            
+document.getElementById("ec").textContent = values.ec;
+            
+document.getElementById("n").textContent = values.n;
+            
+document.getElementById("p").textContent = values.p;
+            
+document.getElementById("k").textContent = values.k;
+        
+});
+    
+</script>
+</body>
+</html>
